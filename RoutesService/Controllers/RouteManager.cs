@@ -20,10 +20,10 @@ namespace RoutesService.Controllers
         private RouteManager()
         {
             routes = new List<Route>();
-
+            points = new List<Point>();
         }
 
-        public static RouteManager RouGetInstance()
+        public static RouteManager GetInstance()
         {
             if (instance == null)
                 instance = new RouteManager();
@@ -76,6 +76,15 @@ namespace RoutesService.Controllers
             return null;
         }
 
+        public List<string> GetAllPoints()
+        {
+            List<string> pointsNames = new List<string>();
+            foreach (Point p in this.points)
+                pointsNames.Add(p.GetName());
+
+            return pointsNames;
+        }
+
         /// <summary>
         /// Create a point it the given name
         /// </summary>
@@ -85,6 +94,7 @@ namespace RoutesService.Controllers
         {
             Point newPoint = new Point(name);
             this.points.Add(newPoint);
+            System.Diagnostics.Debug.WriteLine("Passei aqui");
             return newPoint;
         }
 

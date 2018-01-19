@@ -13,12 +13,21 @@ namespace RoutesService.Controllers
         [HttpGet]
         public string NumberOfRoutes()
         {
-            return ""+RouteManager.RouGetInstance().GetNumberOfRoutes();
+            return ""+RouteManager.GetInstance().GetNumberOfRoutes();
+        }
+
+        [HttpPost]
+        public List<string> GetPoints()
+        {
+            return RouteManager.GetInstance().GetAllPoints();
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public void AddPoint([FromBody]string name)
         {
+            
+            RouteManager.GetInstance().RetrieveOrGeneratePoint(name);
         }
 
         // PUT api/values/5
